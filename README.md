@@ -8,19 +8,19 @@ formats.
     
 # Core components and responsibilities
 
- 1.isDelimeter(char)
+ 1. isDelimeter(char)
  Recognizes characters that separate tokens (spaces, newlines, punctuation, many operators). Used to 
 determine token boundaries.
 
- 2.isOperator(char)
+ 2. isOperator(char)
  Identifies one-character operators.
  
- 3.isPunctuation(char)
+ 3. isPunctuation(char)
  Identifies punctuation characters printed as separate tokens.
  
- 4.isValidIdentifier(char*)
+ 4. isValidIdentifier(char*)
  Validates C-like identifiers: must not start with a digit and may contain letters, digits, and 
-underscores.
+ underscores.
 
 5. isKeyword(char*)
  Checks whether a token matches a table of common C keywords and selected library functions 
@@ -58,19 +58,19 @@ classifies them by calling the helper functions above.
 # Edge Cases & Implementation Notes
  The implementation explicitly addresses several tricky cases:
  
- -String literals: The scanner collects entire string literals, including escaped quotes, so contents 
+ 1. String literals: The scanner collects entire string literals, including escaped quotes, so contents 
 such as " are preserved and the literal is not split.
 
- -Character literals: Handles both simple characters ('A') and escaped forms (' ', '\'). The skip routine 
+ 2. Character literals: Handles both simple characters ('A') and escaped forms (' ', '\'). The skip routine 
 prevents accidental splitting.
 
- -Comments: Both // single-line and /* ... */ multi-line comments are recognized and ignored in 
+ 3. Comments: Both // single-line and /* ... */ multi-line comments are recognized and ignored in 
 token output.
 
- -Numeric bases: Integer recognition supports binary (0b/0B), hexadecimal (0x/0X), octal (leading 
+ 4. Numeric bases: Integer recognition supports binary (0b/0B), hexadecimal (0x/0X), octal (leading 
 0), and decimal. Floats are recognized when a single decimal point occurs with digits on both sides.
 
- -Multi-character operators: The scanner detects ++, --, ==, !=, <=, and >= using lookahead.
+ 5. Multi-character operators: The scanner detects ++, --, ==, !=, <=, and >= using lookahead.
  
  # Conclusion
  This Lexical Analyzer provides a compact and practical demonstration of lexical scanning 
